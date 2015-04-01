@@ -1,0 +1,40 @@
+{{ partial "header.html" . }}
+
+<article class="post type-post status-publish format-standard has-post-thumbnail hentry category-blogroll category-parent category-theme-demo tag-antarctica tag-content-2 tag-css tag-lorem-ipsul tag-post-formats tag-theme-demo-2">
+	<header class="entry-header">
+		<h2 class="entry-title">{{ .Title }}</h2>
+		<div class="entry-meta">
+			<span class="posted-on">
+				<span class="genericon genericon-day"></span> 
+				<a href="http://demo.basilosaur.us/beluga/2014/08/24/a-versitile-and-compelling-theme/" rel="bookmark">
+					<time class="entry-date published" datetime="2014-08-24T21:18:37+00:00">{{ .Date.Format "Jan 2, 2006" }}</time>
+				</a>
+			</span>
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	<div class="entry-content hyphens">
+		{{ .Content}}
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<span class="cat-links">
+			<span class="genericon genericon-category"></span> 
+			<a href="http://demo.basilosaur.us/beluga/category/blogroll/" rel="category tag">Blogroll</a>, 
+			<a href="http://demo.basilosaur.us/beluga/category/parent/" rel="category tag">Parent</a>, 
+			<a href="http://demo.basilosaur.us/beluga/category/theme-demo/" rel="category tag">Theme Demo</a>			
+		</span>	
+		&nbsp;|&nbsp;
+		<span class="tags-links">
+			<span class="genericon genericon-tag"></span> 
+			<a href="http://demo.basilosaur.us/beluga/tag/antarctica/" rel="tag">antarctica</a>, 
+			<a href="http://demo.basilosaur.us/beluga/tag/content-2/" rel="tag">content</a>, 
+			<a href="http://demo.basilosaur.us/beluga/tag/css/" rel="tag">css</a>, 
+			<a href="http://demo.basilosaur.us/beluga/tag/lorem-ipsul/" rel="tag">lorem ipsul</a>, 
+			<a href="http://demo.basilosaur.us/beluga/tag/post-formats/" rel="tag">Post Formats</a>, 
+			<a href="http://demo.basilosaur.us/beluga/tag/theme-demo-2/" rel="tag">theme demo</a>			
+		</span>
+	</footer><!-- .entry-footer -->
+</article>
+
+{{ partial "footer.html" . }}

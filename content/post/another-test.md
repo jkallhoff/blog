@@ -2,7 +2,7 @@
 date = "2015-03-31T20:23:42-05:00"
 draft = false
 title = "another test"
-
+tags = ["jackson","hole"]
 +++
 
 # Paulumque niveo tardis lacrimas iam cum in

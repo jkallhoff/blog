@@ -3,7 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jkallhoff.com</title>
+  	<title>
+	    {{ if eq .Url "/" }}
+	      {{ .Site.Params.Title }} &middot; {{ .Site.Params.Tagline }}
+	    {{ else }}
+	      {{ .Title }} &middot; {{ .Site.Params.Title }}
+	    {{ end }}
+  	</title>
 
 	<!-- <meta name='robots' content='noindex,follow' />
 	<link rel="alternate" type="application/rss+xml" title="Beluga Demo &raquo; Feed" href="http://demo.basilosaur.us/beluga/feed/" /> -->
@@ -22,7 +28,7 @@
 				<div class="masthead-opacity"></div>
 				<div class="site-branding">
 					<h1 class="site-title"><a href="/" rel="home">Jesse Kallhoff</a></h1>
-					<h2 class="site-description">.NET, Go, Stuff</h2>
+					<h2 class="site-description">development blog</h2>
 				</div>
 			</header><!-- #masthead -->
 			

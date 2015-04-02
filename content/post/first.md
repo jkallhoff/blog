@@ -2,6 +2,7 @@
 date = "2015-03-29T21:25:45-05:00"
 draft = true
 title = "Moving to a new Host"
+tags = ["jackson","intro"]
 +++
 
 After roughly 100k spam messages, failing to stay on top of upgrades, and the move to Digital Ocean, I’ve decided it’s time to change blogging platforms.

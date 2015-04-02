@@ -1,23 +1,23 @@
-{{ partial "header.html" . }}
 {{ $noOfTags := sub (len .Params.tags) 1  }}
 <article class="post type-post status-publish format-standard has-post-thumbnail hentry category-blogroll category-parent category-theme-demo tag-antarctica tag-content-2 tag-css tag-lorem-ipsul tag-post-formats tag-theme-demo-2">
 	<header class="entry-header">
-		<h2 class="entry-title">{{ .Title }}</h2>
+		<h2 class="entry-title">
+			<a href="{{ .Permalink }}" rel="bookmark">{{ .Title }}</a>
+		</h2>
 		<div class="entry-meta">
 			<span class="posted-on">
 				<span class="genericon genericon-day"></span> 
-				<a href="{{ .Title }}" rel="bookmark">
+				<a href="{{ .Permalink }}" rel="bookmark">
 					<time class="entry-date published" datetime="2014-08-24T21:18:37+00:00">{{ .Date.Format "Jan 2, 2006" }}</time>
 				</a>
-			</span>
+			</span>	
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
-
-	<div class="entry-content hyphens">
-		{{ .Content}}
+	<div class="entry-content justified">
+		<p>{{ .Summary }}</p>
 	</div><!-- .entry-content -->
-
 	<footer class="entry-footer">
+
 		<span class="tags-links">
 			<span class="genericon genericon-tag"></span> 
 			{{ range $i,$tag := .Params.tags }}
@@ -26,9 +26,7 @@
 		    	{{ else }}
 					<a href="/tags/{{ . | urlize }}">{{ $tag }}</a>
 				{{ end }}
-		  	{{ end }}		
+		  	{{ end }}	
 		</span>
 	</footer><!-- .entry-footer -->
-</article>
-
-{{ partial "footer.html" . }}
+</article><!-- #post-## -->

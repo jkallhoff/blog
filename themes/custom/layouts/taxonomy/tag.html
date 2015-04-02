@@ -1,8 +1,10 @@
 {{ partial "header.html" . }}
+	<h1>{{ .Title }}</h1>
 	{{ $pagination := 5 }}
+
 	{{ range first $pagination .Data.Pages }}
 	    {{ if eq .Type "post"}}
-			{{ partial "postSummary.html" . }}
+	    	{{ partial "postSummary.html" . }}
 		{{ end }}
 	{{ end }}
 {{ partial "footer.html" . }}

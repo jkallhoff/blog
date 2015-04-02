@@ -1,0 +1,14 @@
+{
+	"baseurl": "http://localhost:1313/",
+	"languageCode": "en-us",
+	"title": "My New Hugo Site",
+	"theme": "custom",
+	"permalinks": {
+        "post": ":year/:month/:day/:title/",
+        "fixed": ":title/"
+    },
+
+	"params": {
+		"Title": "jkallhoff.com"
+	}
+}

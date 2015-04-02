@@ -1,23 +1,36 @@
+{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+
 				</main><!-- #main -->
 			</div>
 		</div><!-- #primary -->
-
 		<nav class="navigation paging-navigation" role="navigation">
 			<h2 class="screen-reader-text">Posts navigation</h2>
 			<div class="nav-links">
+				{{ if eq true $paginator.HasNext }}
 				<div class="nav-previous">
-					<a href="http://demo.basilosaur.us/beluga/page/2/" >
+					<a href="{{ $paginator.Next.Url }}" >
 						<span class="meta-nav">&larr;</span> 
 						Older posts
 					</a>
 				</div>
+				{{ end }}
+				{{ if eq true $paginator.HasPrev }}
+				<div class="nav-next">
+					<a href="{{ $paginator.Prev.Url }}" >
+						Newer posts 
+						<span class="meta-nav">&rarr;</span>
+					</a>
+				</div>
+				{{ end }}
 			</div><!-- .nav-links -->
 		</nav><!-- .navigation -->
+
 	</div><!-- #content -->	
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="inner">
 			<div class="site-info">
-				<a href="http://gohugo.io/">Powered by hugo</a>		
+				<a href="http://gohugo.io/">Powered by hugo</a><br />
+				All content copyright Jesse Kallhoff © 2015 • Some rights reserved.	
 			</div><!-- .site-info -->
 		</div>
 	</footer><!-- #colophon -->

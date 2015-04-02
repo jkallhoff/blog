@@ -1,5 +1,9 @@
 {{ partial "header.html" . }}
-	<h1>{{ .Title }}</h1>
+	
+	<header class="page-header">
+		<h1 class="page-title">{{ .Title }}</h1>
+	</header>
+
 	{{ $pagination := 5 }}
 
 	{{ range first $pagination .Data.Pages }}

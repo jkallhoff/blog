@@ -3,6 +3,7 @@
 	"languageCode": "en-us",
 	"title": "My New Hugo Site",
 	"theme": "custom",
+	"Paginate": "2",
 	"permalinks": {
         "post": ":year/:month/:day/:title/",
         "fixed": ":title/"

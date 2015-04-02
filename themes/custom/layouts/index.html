@@ -1,6 +1,6 @@
 {{ partial "header.html" . }}
-	{{ $pagination := 5 }}
-	{{ range first $pagination .Data.Pages }}
+	{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+	{{ range $paginator.Pages }}
 	    {{ if eq .Type "post"}}
 			{{ partial "postSummary.html" . }}
 		{{ end }}

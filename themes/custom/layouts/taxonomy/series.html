@@ -1,0 +1,14 @@
+{{ partial "header.html" . }}
+	
+	<header class="page-header">
+		<h1 class="page-title">{{ .Title }}</h1>
+	</header>
+
+	{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+
+	{{ range $paginator.Pages }}
+	    {{ if eq .Type "post"}}
+	    	{{ partial "postSummary.html" . }}
+		{{ end }}
+	{{ end }}
+{{ partial "footer.html" . }}

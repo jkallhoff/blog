@@ -51,6 +51,16 @@
 							</div>
 						</aside>		
 					</div>
+					<div class="sidebar sidebar-2  menu-column justified">
+						<aside id="tag_cloud-2" class="widget widget_tag_cloud">
+							<h2 class="widget-title">Series</h2>
+							<div class="tagcloud">
+						  		{{ range $name, $taxonomy := .Site.Taxonomies.series.ByCount }}
+									<a href="/series/{{ $taxonomy.Term | urlize }}" title="$name" style='font-size: 8pt;'>{{ $taxonomy.Term }}</a>
+  								{{ end }}
+							</div>
+						</aside>		
+					</div>
 				</div>
 				<nav id="menu-button" class="clear">
 					<a href="#"><span class="genericon genericon-menu"></span></a>

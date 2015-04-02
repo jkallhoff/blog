@@ -1,4 +1,5 @@
-{{ $noOfTags := sub (len .Params.tags) 1  }}
+{{ $noOfTags := len .Params.tags }}
+{{ $noOfSeries := len .Params.series }}
 <article class="post type-post status-publish format-standard has-post-thumbnail hentry category-blogroll category-parent category-theme-demo tag-antarctica tag-content-2 tag-css tag-lorem-ipsul tag-post-formats tag-theme-demo-2">
 	<header class="entry-header">
 		<h2 class="entry-title">
@@ -17,16 +18,30 @@
 		<p>{{ .Summary }}</p>
 	</div><!-- .entry-content -->
 	<footer class="entry-footer">
-
+		{{ if gt $noOfSeries 0 }}
+			<span class="cat-links">
+				<span class="genericon genericon-category"></span> 
+				{{ range $i, $series := .Params.series }}
+					{{ if lt $i (sub $noOfSeries 1) }}
+				    	<a href="/series/{{ . | urlize }}" rel="category tag">{{ $series }}</a>,
+			    	{{ else }}
+						<a href="/series/{{ . | urlize }}" rel="category tag">{{ $series }}</a>
+					{{ end }} 	
+				{{ end }}	
+			</span>
+			&nbsp;|&nbsp;
+		{{ end }}
+		{{ if gt $noOfTags 0 }}
 		<span class="tags-links">
 			<span class="genericon genericon-tag"></span> 
 			{{ range $i,$tag := .Params.tags }}
-				{{ if lt $i $noOfTags }}
-			    	<a href="/tags/{{ . | urlize }}">{{ $tag }}</a>,
+				{{ if lt $i (sub $noOfTags 1) }}
+			    	<a href="/tags/{{ . | urlize }}" rel="category tag">{{ $tag }}</a>,
 		    	{{ else }}
-					<a href="/tags/{{ . | urlize }}">{{ $tag }}</a>
+					<a href="/tags/{{ . | urlize }}" rel="category tag">{{ $tag }}</a>
 				{{ end }}
 		  	{{ end }}	
 		</span>
+		{{ end }}
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

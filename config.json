@@ -8,7 +8,10 @@
         "post": ":year/:month/:day/:title/",
         "fixed": ":title/"
     },
-
+    "taxonomies": {
+    	"tag": "tags",
+    	"series": "series"
+	},
 	"params": {
 		"Title": "jkallhoff.com"
 	}

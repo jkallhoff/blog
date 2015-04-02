@@ -4,9 +4,9 @@
 		<h1 class="page-title">{{ .Title }}</h1>
 	</header>
 
-	{{ $pagination := 5 }}
+	{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 
-	{{ range first $pagination .Data.Pages }}
+	{{ range $paginator.Pages }}
 	    {{ if eq .Type "post"}}
 	    	{{ partial "postSummary.html" . }}
 		{{ end }}

@@ -3,6 +3,7 @@
 				</main><!-- #main -->
 			</div>
 		</div><!-- #primary -->
+		{{ if or ($paginator.HasNext) ($paginator.HasPrev) }}
 		<nav class="navigation paging-navigation" role="navigation">
 			<h2 class="screen-reader-text">Posts navigation</h2>
 			<div class="nav-links">
@@ -24,7 +25,7 @@
 				{{ end }}
 			</div><!-- .nav-links -->
 		</nav><!-- .navigation -->
-
+		{{ end }}
 	</div><!-- #content -->	
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="inner">

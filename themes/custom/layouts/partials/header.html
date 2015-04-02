@@ -41,12 +41,40 @@
 
 			<div id="site-menu" class="site-menu clear">
 				<div id="menu-inner">
+					<nav class="main-navigation menu-column" role="navigation">
+						<div class="menu-testing-menu-container">
+							<ul id="menu-testing-menu" class="menu">
+								<li  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+									<a href="#">Social</a>
+									<ul class="sub-menu">
+										<li class="menu-item menu-item-type-post_type menu-item-object-page">
+											<a href="https://twitter.com/jkallhoff">@jkallhoff (Twitter)</a>
+										</li>
+										<li class="menu-item menu-item-type-post_type menu-item-object-page">
+											<a href="https://github.com/JKallhoff" rel="github" style="border-bottom: none">Github</a>
+										</li>
+										<li class="menu-item menu-item-type-post_type menu-item-object-page">
+											<a href="http://www.linkedin.com/in/jessekallhoff" rel="linkedin" style="border-bottom: none">LinkedIn</a>
+										</li>
+									</ul>
+								</li>
+								<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+									<a href="#">Site Pages</a>
+									<ul class="sub-menu">
+										<li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+											<a href="http://demo.basilosaur.us/beluga/category/markup/">Markup</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>			
+					</nav><!-- #site-navigation -->
 					<div class="sidebar sidebar-2  menu-column justified">
 						<aside id="tag_cloud-2" class="widget widget_tag_cloud">
 							<h2 class="widget-title">Tags</h2>
 							<div class="tagcloud">
 						  		{{ range $name, $taxonomy := .Site.Taxonomies.tags.ByCount }}
-									<a href="/tags/{{ $taxonomy.Term | urlize }}" title="$name" style='font-size: 8pt;'>{{ $taxonomy.Term }}</a>
+									<a href="/tags/{{ $taxonomy.Term | urlize }}" title="$name" style='font-size: 9pt;'>{{ $taxonomy.Term }}</a>
   								{{ end }}
 							</div>
 						</aside>		
@@ -56,7 +84,7 @@
 							<h2 class="widget-title">Series</h2>
 							<div class="tagcloud">
 						  		{{ range $name, $taxonomy := .Site.Taxonomies.series.ByCount }}
-									<a href="/series/{{ $taxonomy.Term | urlize }}" title="$name" style='font-size: 8pt;'>{{ $taxonomy.Term }}</a>
+									<a href="/series/{{ $taxonomy.Term | urlize }}" title="$name" style='font-size: 9pt;'>{{ $taxonomy.Term }}</a>
   								{{ end }}
 							</div>
 						</aside>		

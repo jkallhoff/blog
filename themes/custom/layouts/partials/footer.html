@@ -2,7 +2,8 @@
 				</main><!-- #main -->
 			</div>
 		</div><!-- #primary -->
-		{{ if ne .Data.Pages nil }}
+
+		{{ if and (ne .Data.Pages nil) (ne .Title "404 Page not found") }}
 		{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 		{{ if or ($paginator.HasNext) ($paginator.HasPrev) }}
 		<nav class="navigation paging-navigation" role="navigation">

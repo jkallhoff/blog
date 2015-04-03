@@ -1,8 +1,9 @@
-{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 
 				</main><!-- #main -->
 			</div>
 		</div><!-- #primary -->
+		{{ if ne .Data.Pages nil }}
+		{{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 		{{ if or ($paginator.HasNext) ($paginator.HasPrev) }}
 		<nav class="navigation paging-navigation" role="navigation">
 			<h2 class="screen-reader-text">Posts navigation</h2>
@@ -25,6 +26,7 @@
 				{{ end }}
 			</div><!-- .nav-links -->
 		</nav><!-- .navigation -->
+		{{ end }}
 		{{ end }}
 	</div><!-- #content -->	
 	<footer id="colophon" class="site-footer" role="contentinfo">

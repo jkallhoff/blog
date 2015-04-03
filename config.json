@@ -4,6 +4,8 @@
 	"title": "My New Hugo Site",
 	"theme": "custom",
 	"Paginate": "2",
+	"pygmentsuseclasses": "false",
+	"pygmentsstyle": "manni",
 	"permalinks": {
         "post": ":year/:month/:day/:title/",
         "fixed": ":title/"

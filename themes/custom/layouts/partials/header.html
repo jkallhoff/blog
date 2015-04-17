@@ -3,23 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>
-	    {{ if eq .Url "/" }}
-	      {{ .Site.Params.Title }} &middot; {{ .Site.Params.Tagline }}
-	    {{ else }}
-	      {{ .Title }} &middot; {{ .Site.Params.Title }}
-	    {{ end }}
-  	</title>
+	<meta name="robots" content="index, follow, archive">
+  	<title>{{ if eq .Url "/" }}jkallhoff.com | personal .net and go development blog{{ else }}{{ .Params.metatitle }}{{ end }}</title>
+  	<meta name="description" content="{{.Params.metadescription}}">
+
 	<link rel="shortcut icon" href="favicon.ico" />
-	<!-- <meta name='robots' content='noindex,follow' />
-	<link rel="alternate" type="application/rss+xml" title="Beluga Demo &raquo; Feed" href="http://demo.basilosaur.us/beluga/feed/" /> -->
 	<link rel='stylesheet' id='theme-slug-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C600%2C700%2C800&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 	<link rel='stylesheet' id='jkallhoff-style-css'  href='/css/style.css' type='text/css' media='all' />
 	<link rel='stylesheet' id='genericons-css'  href='/css/genericons.css' type='text/css' media='all' />
 	<script type='text/javascript' src='/js/jquery.js'></script>
 	<script type='text/javascript' src='/js/jquery-migrate.min.js'></script>
-	<!-- <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://demo.basilosaur.us/beluga/xmlrpc.php?rsd" />
-	<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://demo.basilosaur.us/beluga/wp-includes/wlwmanifest.xml" /> -->
 </head>
 <body class="home blog custom-background">
 	<div id="page" class="hfeed site">

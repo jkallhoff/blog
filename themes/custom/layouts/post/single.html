@@ -1,5 +1,6 @@
 {{ partial "header.html" . }}
 {{ $noOfTags := sub (len .Params.tags) 1  }}
+			
 			<article class="post type-post status-publish format-standard has-post-thumbnail hentry category-blogroll category-parent category-theme-demo tag-antarctica tag-content-2 tag-css tag-lorem-ipsul tag-post-formats tag-theme-demo-2">
 				<header class="entry-header">
 					<h2 class="entry-title">{{ .Title }}</h2>
@@ -29,6 +30,20 @@
 					  	{{ end }}		
 					</span>
 				</footer><!-- .entry-footer -->
+
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+			    var disqus_url = '{{ .Permalink }}';
+			    var disqus_shortname = 'jkallhoffcom';
+
+			    (function() {
+			        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			    })();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 			</article>
 		</main><!-- #main -->
 	</div>

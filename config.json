@@ -1,7 +1,7 @@
 {
 	"baseurl": "http://localhost:1313/",
 	"languageCode": "en-us",
-	"title": "My New Hugo Site",
+	"title": "Jesse Kallhoff's Development Blog",
 	"theme": "custom",
 	"Paginate": "2",
 	"pygmentsuseclasses": "false",

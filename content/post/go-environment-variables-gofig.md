@@ -10,7 +10,7 @@ title = "Go Environment Variables: GoFig"
 
 > **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It was written when the Go source wasn't yet housed at Github and I was still very much learning the language.
 
-One problem I ran into early in my efforts to build web applications using Go was managing environment specific variables. Coming from an ASP.Net background I was used to having a plethora of .config files I could use and deploy depending on my target environment. Not wanting to check my MongoDB connection string into my test Go application's Git repo (see the **Security Notice** at the bottom of my [MongoDB on Webfaction][1] post) I set out to create a super light weight configuration package.
+One problem I ran into early in my efforts to build web applications using Go was managing environment specific variables. Coming from an ASP.Net background I was used to having a plethora of .config files I could use and deploy depending on my target environment.<!--more--> Not wanting to check my MongoDB connection string into my test Go application's Git repo (see the **Security Notice** at the bottom of my [MongoDB on Webfaction][1] post) I set out to create a super light weight configuration package.
 
 # GoFig
 

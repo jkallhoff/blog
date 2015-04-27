@@ -8,6 +8,8 @@ title = "go web apps risk analyzer engine and tests"
 
 +++
 
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It was written when the Go source wasn't yet housed at Github and I was still very much learning the language.
+
 Now that we've set up our base web application to serve static files:
 
 [Go Web Apps: Risk Analyzer][1]

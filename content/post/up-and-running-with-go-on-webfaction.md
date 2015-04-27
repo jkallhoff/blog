@@ -8,6 +8,9 @@ title = "Up and Running With Go on Webfaction"
 
 +++
 
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It was written when the Go source wasn't yet housed at Github and I was still very much learning the language.
+
+
 Over the past handful of weeks I've set aside other development research and started pouring over all of the GO documentation I could get my hands on. After numerous hello world style applications I've decided today is the day to take Go to the next level: **hosted web applications**!
 
 <!--more-->

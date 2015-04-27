@@ -8,6 +8,8 @@ title = "Go Web Apps: Risk Analyzer - Tying It All Together"
 
 +++
 
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It was written when the Go source wasn't yet housed at Github and I was still very much learning the language.
+
 If you haven't read the previous Risk Analyzer posts I highly suggest you do so first:
 
 *   [GO WEB APPS: RISK ANALYZER – SETUP][1]

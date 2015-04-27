@@ -4,7 +4,7 @@ metadescription = "Writing a go web app to analyze the odds of winning as an att
 metatitle = "jkallhoff.com | go web apps risk analyzer engine and tests"
 series = ["archive","risk analyzer"]
 tags = ["go"]
-title = "go web apps risk analyzer engine and tests"
+title = "Go Web Apps: Risk Analyzer - Engine and Tests"
 
 +++
 

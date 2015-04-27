@@ -3,7 +3,7 @@ date = "2015-04-06T20:35:10-05:00"
 metadescription = "A step-by-step tutorial on setting up a new linux server for hosting a static golang hugo blog at DigitalOcean."
 metatitle = "jkallhoff.com | Moving to DigitalOcean - a step-by-step tutorial on setting up a new linux server for hosting a static hugo blog at DigitalOcean."
 series = ["Moving to DigitalOcean"]
-tags = ["golang","linux","digitalocean"]
+tags = ["go","linux","digitalocean"]
 title = "Moving to DigitalOcean"
 
 +++

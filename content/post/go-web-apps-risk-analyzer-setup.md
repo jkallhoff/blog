@@ -204,10 +204,10 @@ The code for this post can be found underneath the following tag:
 
 In the next post we'll build out our battle engine/business logic and add some test coverage!
 
- [1]: http://jessekallhoff.com/2013/04/04/up-and-running-with-go-on-webfaction/
- [2]: http://jessekallhoff.com/2013/04/22/go-environment-variables-gofig/
- [3]: http://jessekallhoff.com/2013/04/14/serving-static-content-from-go/
- [4]: http://jessekallhoff.com/2013/04/10/setting-up-mongodb-on-webfaction-with-golang/
+ [1]: /2013/04/04/up-and-running-with-go-on-webfaction/
+ [2]: /2013/04/22/go-environment-variables-gofig/
+ [3]: /2013/04/14/go-web-apps-serving-static-files/
+ [4]: /2013/04/10/setting-up-mongodb-on-webfaction-with-go/
  [5]: http://twitter.github.io/bootstrap/
  [6]: http://www.gorillatoolkit.org/pkg/mux
  [7]: http://jessekallhoff.com/wp-content/uploads/2013/05/Screen-Shot-2013-05-01-at-8.40.50-AM.png

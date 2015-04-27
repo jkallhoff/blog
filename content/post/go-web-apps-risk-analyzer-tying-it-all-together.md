@@ -657,12 +657,12 @@ func determineSingleBattle(request *BattleRequest) (result *singleBattleResult) 
 }
 {{< /highlight >}}
 
- [1]: http://jessekallhoff.com/2013/05/02/go-web-apps-risk-analyzer-pt-1/
- [2]: http://jessekallhoff.com/2013/05/13/go-web-apps-risk-analyzer-engine-and-tests-pt-2/
+ [1]: http://jessekallhoff.com/2013/05/02/go-web-apps-risk-analyzer---setup/
+ [2]: http://jessekallhoff.com/2013/05/13/go-web-apps-risk-analyzer-engine-and-tests/
  [3]: http://www.10gen.com/
  [4]: http://docs.mongodb.org/manual/
  [5]: http://www.webbfaction.com
- [6]: http://jessekallhoff.com/2013/04/10/setting-up-mongodb-on-webfaction-with-golang/
+ [6]: http://jessekallhoff.com/2013/04/10/setting-up-mongodb-on-webfaction-with-go/
  [7]: http://mongolab.com
  [8]: http://www.mongohq.com
  [9]: http://labix.org/mgo

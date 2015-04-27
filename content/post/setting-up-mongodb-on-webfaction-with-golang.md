@@ -19,10 +19,7 @@ Setting up MongoDB in your Webfaction is a fairly straightforward process that's
 I won't repeat the steps verbatim but there are a couple addendum notes you should be aware of before we move on to the next steps:
 
 *   Step 1.i. - this is extremely important. Make sure to write down your custom application port number because we'll need it down the line.
-*   Step 3.b. - you can find this information on the Account/Dashboard tab when logged into Webfactional:
-
-![Where to find your server designation][4]
-
+*   Step 3.b. - you can find this information on the Account/Dashboard tab when logged into Webfactional
 *   Step 4.f. - also extremely important. Write down the username and password you chose because we'll need it for later.
 
 For easy reference I've copied over the string to start your MongoDB instance here:
@@ -143,6 +140,5 @@ I'm a big fan of using [github.com][6] both for versioning my Go apps as well as
  [1]: http://www.webfaction.com
  [2]: http://labix.org/mgo
  [3]: http://jessekallhoff.com/2013/04/04/up-and-running-with-go-on-webfaction/
- [4]: http://jessekallhoff.com/wp-content/uploads/2013/04/Screen-Shot-2013-04-10-at-6.48.05-PM.png
  [5]: http://wiki.bazaar.canonical.com/
  [6]: http://github.com

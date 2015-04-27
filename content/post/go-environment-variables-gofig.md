@@ -224,6 +224,6 @@ Some features I'd like to add, time permitting:
 *   More conversion methods: **integer**, **float**, etc...
 *   Being able to switch which config file is loaded based on an argument flag
 
- [1]: http://jessekallhoff.com/2013/04/10/setting-up-mongodb-on-webfaction-with-golang/
+ [1]: /2013/04/10/setting-up-mongodb-on-webfaction-with-go/
  [2]: http://golang.org/pkg/os/#File
  [3]: http://golang.org/pkg/os/#FileInfo

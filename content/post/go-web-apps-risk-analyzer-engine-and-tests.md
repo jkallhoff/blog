@@ -704,7 +704,7 @@ func FetchBattleRequest(attackingArmies, defendingArmies, numberOfBattles int) (
 
 I've tagged the code in the repo for this post here: [v2.0][5]. Next post we'll tie our engine to our web application and add MongoDB persistence!
 
- [1]: http://jessekallhoff.com/2013/05/02/go-web-apps-risk-analyzer-pt-1/
+ [1]: 2013/05/02/go-web-apps-risk-analyzer---setup/
  [2]: #Synopsis
  [3]: http://golang.org/pkg/math/rand/
  [4]: http://golang.org/pkg/sort/

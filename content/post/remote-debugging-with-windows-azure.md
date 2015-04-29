@@ -5,7 +5,7 @@ metatitle = "jessekallhoff.com | Remote Debugging with Windows Azure"
 series = []
 tags = ["azure"]
 title = "Remote Debugging with Windows Azure"
-
+aliases = ["/2014/07/09/remote-debugging-windows-azure/"]
 +++
 
 I’ve recently found myself (as well as other developers at [The Nerdery][1]) relying on the **Websites** feature of [Windows Azure][2] for hosting everything from our scratch pad web applications and API’s on up to our production apps. Recently, while doing a deployment to one of our production websites on Azure, I found myself facing an Object Reference error which couldn’t be reproduced in any other non-production environment. Luckily, with the release of the Azure SDK 2.2, Microsoft enabled remote debugging of your website instances.

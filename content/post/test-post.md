@@ -5,7 +5,6 @@ metatitle = "jkallhoff.com | "
 series = []
 tags = []
 title = "test"
-draft = "true"
 +++
 
 # This is a heading 1

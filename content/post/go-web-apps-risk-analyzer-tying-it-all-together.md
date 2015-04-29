@@ -5,6 +5,7 @@ metatitle = "jessekallhoff.com | go web apps risk analyzer tying it all together
 series = ["archive","risk analyzer"]
 tags = ["go"]
 title = "Go Web Apps: Risk Analyzer - Tying It All Together"
+aliases = ["/2013/05/29/go-web-apps-risk-analyzer-tying-it-all-together-pt-3/"]
 
 +++
 

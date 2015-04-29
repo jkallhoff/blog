@@ -28,7 +28,7 @@ The solution I chose was [**Hugo**][6], a static site generator written in Go. T
 	* Correctly configure SSH (non-root) access
 	* Use firewall software to block all non-necessary ports
 	* Set up some form of intrusion detection
-* Setting up a monitoring tool like [New Relic][7] for server monitoring
+* Set up a monitoring tool like [New Relic][7] for server monitoring
 
 So, over the course of the next few weeks, I'm going to kick off a series on the exact steps I took to accomplish the above goals. We'll go from Digital Ocean account sign up to a working static website served via Nginx. Stay tuned!
 

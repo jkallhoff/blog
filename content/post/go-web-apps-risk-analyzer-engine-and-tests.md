@@ -5,6 +5,7 @@ metatitle = "jessekallhoff.com | go web apps risk analyzer engine and tests"
 series = ["archive","risk analyzer"]
 tags = ["go"]
 title = "Go Web Apps: Risk Analyzer - Engine and Tests"
+aliases = ["/2013/05/13/go-web-apps-risk-analyzer-engine-and-tests-pt-2/"]
 
 +++
 
@@ -19,9 +20,9 @@ It's time to move on to the meat of the application which is the actual Risk (th
 We'll be building the risk engine as a sub package of the main web application we started putting together in the previous post. Get started by adding a folder to the root of the application named **riskEngine** and add the following two blank Go files to it:
 
 *   battleCalculator.go
-*   battleCalculator_test.go
+*   battleCalculator\_test.go
 
-**BattleCalculator.go** will hold our actual engine code and, as you may have guessed, **battleCalculator_test.go** will contain our unit tests.
+**BattleCalculator.go** will hold our actual engine code and, as you may have guessed, **battleCalculator\_test.go** will contain our unit tests.
 
 # Getting To It: battleCalculator.go
 
@@ -31,7 +32,7 @@ Lets start off by creating the dependency that any caller of our engine will dep
 
 {{< highlight go >}}
 type BattleCalculator interface {
-    CalculateBattleResults() *BattleResult
+	CalculateBattleResults() *BattleResult
 }
 {{< /highlight >}}
 
@@ -39,8 +40,8 @@ The above **BattleCalculator** interface states that anything that would impleme
 
 {{< highlight go >}}
 type BattleResult struct {
-    AverageNumberOfAttackersLeft int
-    PercentageThatWereWins       float32
+	AverageNumberOfAttackersLeft int
+	PercentageThatWereWins       float32
 }
 {{< /highlight >}}
 
@@ -50,10 +51,10 @@ Although we've defined our BattleCalculator interface we haven't yet created a t
 
 {{< highlight go >}}
 type BattleRequest struct {
-    AttackingArmies, DefendingArmies int
-    NumberOfBattles                  int
-    singleBattleResolver             func(*BattleRequest) *singleBattleResult
-    diceRoller                       func(numberOfDiceToRoll int) []int
+	AttackingArmies, DefendingArmies int
+	NumberOfBattles                  int
+	singleBattleResolver             func(*BattleRequest) *singleBattleResult
+	diceRoller                       func(numberOfDiceToRoll int) []int
 }
 {{< /highlight >}}
 
@@ -70,8 +71,8 @@ This is how I solved for mocking dependencies in Go. I knew that my risk engine 
 
 {{< highlight go >}}
 type singleBattleResult struct {
-    AttackingArmiesLeft int
-    AttackerWon         bool
+	AttackingArmiesLeft int
+	AttackerWon         bool
 }
 {{< /highlight >}}
 
@@ -79,28 +80,28 @@ Here we're defining a non-exported struct to hold the results of a single battle
 
 ## Wiring up BattleRequest to Implement BattleCalculator
 
-In order for our **BattleRequest** object to implement our **BattleCalculator** interface the request object must contain a **CalculateBattleResults() *BattleResult** method signature. Lets add one:
+In order for our **BattleRequest** object to implement our **BattleCalculator** interface the request object must contain a \**CalculateBattleResults() *BattleResult\*\* method signature. Lets add one:
 
 {{< highlight go >}}
-func (request *BattleRequest) CalculateBattleResults() (result *BattleResult) {
+func (request *BattleRequest) CalculateBattleResults() (result *BattleResult) {
 
-    rand.Seed(time.Now().UnixNano())
-    battles := make([]*singleBattleResult, request.NumberOfBattles, request.NumberOfBattles)
-
-    if request.singleBattleResolver == nil {
-        request.singleBattleResolver = determineSingleBattle
-    }
-
-    if request.diceRoller == nil {
-        request.diceRoller = rollTheDice
-    }
-
-    for index, _ := range battles {
-        battles[index] = request.singleBattleResolver(request)
-    }
-
-    result = request.calculateBattleResult(battles)
-    return
+	rand.Seed(time.Now().UnixNano())
+	battles := make([]*singleBattleResult, request.NumberOfBattles, request.NumberOfBattles)
+	
+	if request.singleBattleResolver == nil {
+	    request.singleBattleResolver = determineSingleBattle
+	}
+	
+	if request.diceRoller == nil {
+	    request.diceRoller = rollTheDice
+	}
+	
+	for index, _ := range battles {
+	    battles[index] = request.singleBattleResolver(request)
+	}
+	
+	result = request.calculateBattleResult(battles)
+	return
 }
 {{< /highlight >}}
 
@@ -110,20 +111,20 @@ After seeding our random generator we create a slice of **singleBattleResult** p
 
 {{< highlight go >}}
 if request.singleBattleResolver == nil {
-    request.singleBattleResolver = determineSingleBattle
+	request.singleBattleResolver = determineSingleBattle
 }
 
 if request.diceRoller == nil {
-    request.diceRoller = rollTheDice
+	request.diceRoller = rollTheDice
 }
 {{< /highlight >}}
 
 The next two **if** statements is where our default concrete dependency wiring comes into play. If the calling code that created the **BattleRequest** object didn't set the **singleBattleResolver** and **diceRoller** method pointers equal to actual methods both properties by default will equal **nil**. The trick of it is that anything that creates a new **BattleRequest** outside of the **riskEngine** package **can't** see these properties since they're not exported and thus we're almost guaranteed that our desired default concrete implementations of these methods will be wired up. Here you can see that we're wiring those methods up to two methods also declared in the **battleCalculator.go** file: **determineSingleBattle** and **rollTheDice**.
 
 {{< highlight go >}}
-for index, _ := range battles {
-        battles[index] = request.singleBattleResolver(request)
-    }
+for index, \_ := range battles {
+	    battles[index] = request.singleBattleResolver(request)
+	}
 {{< /highlight >}}
 
 Here we're looping through each element in the **battles** slice and setting its value equal to a call to our **singleBattleResolver** which returns a pointer to a **singelBattleResult** object.
@@ -143,20 +144,20 @@ The built in [sort][4] package allows us to sort our resulting int slice lowest 
 
 {{< highlight go >}}
 type diceResultSorter struct {
-    sort.Interface
+	sort.Interface
 }
 
 func (sorter diceResultSorter) Less(i, j int) bool {
-    return sorter.Interface.Less(j, i)
+	return sorter.Interface.Less(j, i)
 }
 
 func rollTheDice(numberOfDiceToRoll int) (results []int) {
-    results = make([]int, numberOfDiceToRoll)
-    for index, _ := range results {
-        results[index] = rand.Intn(6) + 1
-    }
-    sort.Sort(diceResultSorter{sort.IntSlice(results)})
-    return
+	results = make([]int, numberOfDiceToRoll)
+	for index, _ := range results {
+	    results[index] = rand.Intn(6) + 1
+	}
+	sort.Sort(diceResultSorter{sort.IntSlice(results)})
+	return
 }
 {{< /highlight >}}
 
@@ -165,54 +166,54 @@ By declaring our own interface for sorting our integers with our own **Less** me
 # Determining the Results of a Single Battle
 
 {{< highlight go >}}
-func determineSingleBattle(request *BattleRequest) (result *singleBattleResult) {
-    var (
-        remainingAttackers = request.AttackingArmies
-        remainingDefenders = request.DefendingArmies
-        numberOfDice       int
-    )
-
-    for remainingAttackers > 1 && remainingDefenders > 0 {
-        if remainingAttackers > 4 {
-            numberOfDice = 3
-        } else {
-            numberOfDice = remainingAttackers - 1
-        }
-
-        attackingDice := request.diceRoller(numberOfDice)
-
-        if remainingDefenders >= 2 {
-            numberOfDice = 2
-        } else {
-            numberOfDice = 1
-        }
-
-        defendingDice := request.diceRoller(numberOfDice)
-
-        if attackingDice[0] > defendingDice[0] {
-            remainingDefenders--
-        } else {
-            remainingAttackers--
-        }
-
-        if len(attackingDice) > 1 && len(defendingDice) > 1 {
-            if attackingDice[1] > defendingDice[1] {
-                remainingDefenders--
-            } else {
-                remainingAttackers--
-            }
-        }
-    }
-
-    result = new(singleBattleResult)
-    result.AttackingArmiesLeft = remainingAttackers
-
-    if remainingDefenders > 0 {
-        result.AttackerWon = false
-    } else {
-        result.AttackerWon = true
-    }
-    return
+func determineSingleBattle(request *BattleRequest) (result *singleBattleResult) {
+	var (
+	    remainingAttackers = request.AttackingArmies
+	    remainingDefenders = request.DefendingArmies
+	    numberOfDice       int
+	)
+	
+	for remainingAttackers > 1 && remainingDefenders > 0 {
+	    if remainingAttackers > 4 {
+	        numberOfDice = 3
+	    } else {
+	        numberOfDice = remainingAttackers - 1
+	    }
+	
+	    attackingDice := request.diceRoller(numberOfDice)
+	
+	    if remainingDefenders >= 2 {
+	        numberOfDice = 2
+	    } else {
+	        numberOfDice = 1
+	    }
+	
+	    defendingDice := request.diceRoller(numberOfDice)
+	
+	    if attackingDice[0] > defendingDice[0] {
+	        remainingDefenders--
+	    } else {
+	        remainingAttackers--
+	    }
+	
+	    if len(attackingDice) > 1 && len(defendingDice) > 1 {
+	        if attackingDice[1] > defendingDice[1] {
+	            remainingDefenders--
+	        } else {
+	            remainingAttackers--
+	        }
+	    }
+	}
+	
+	result = new(singleBattleResult)
+	result.AttackingArmiesLeft = remainingAttackers
+	
+	if remainingDefenders > 0 {
+	    result.AttackerWon = false
+	} else {
+	    result.AttackerWon = true
+	}
+	return
 }
 {{< /highlight >}}
 
@@ -233,23 +234,23 @@ Once we've hit the point where the battle is over we determine if the attacker w
 The final bit of functionality we're adding is the **calculateBattleRequest** call which is responsible for forming up our final **BattleResult** pointer, populating the appropriate bits:
 
 {{< highlight go >}}
-func (request *BattleRequest) calculateBattleResult(battles []*singleBattleResult) (result *BattleResult) {
-    result = new(BattleResult)
-    sum := 0
-    numberOfBattles := 0
-    numberOfWins := 0
-
-    for _, battleResult := range battles {
-        sum = sum + battleResult.AttackingArmiesLeft
-        numberOfBattles++
-        if battleResult.AttackerWon {
-            numberOfWins++
-        }
-    }
-
-    result.AverageNumberOfAttackersLeft = int(sum / numberOfBattles)
-    result.PercentageThatWereWins = (float32(numberOfWins) / float32(numberOfBattles)) * 100
-    return
+func (request *BattleRequest) calculateBattleResult(battles []*singleBattleResult) (result \*BattleResult) {
+	result = new(BattleResult)
+	sum := 0
+	numberOfBattles := 0
+	numberOfWins := 0
+	
+	for _, battleResult := range battles {
+	    sum = sum + battleResult.AttackingArmiesLeft
+	    numberOfBattles++
+	    if battleResult.AttackerWon {
+	        numberOfWins++
+	    }
+	}
+	
+	result.AverageNumberOfAttackersLeft = int(sum / numberOfBattles)
+	result.PercentageThatWereWins = (float32(numberOfWins) / float32(numberOfBattles)) * 100
+	return
 }
 {{< /highlight >}}
 
@@ -259,8 +260,8 @@ The above should be pretty straight forward. We're looping through the passed in
 
 Testing in Go uses the built in testing framework/packages that are heavily convention based. Some of those conventions are as follows:
 
-*   The file that contains your unit tests should be appended with **_test** as in **battleCalculator_test.go**. 
-*   The code within that file should be included in the same package as the code under test (i.e. if **battleCalculator.go** is part of the **riskEngine** package then your **_test.go** file should also be part of that package).
+*   The file that contains your unit tests should be appended with **\_test** as in **battleCalculator\_test.go**. 
+*   The code within that file should be included in the same package as the code under test (i.e. if **battleCalculator.go** is part of the **riskEngine** package then your **\_test.go** file should also be part of that package).
 *   All tests within your test file need to be prepended with the word **Test** (see below)
 
 Test execution in Go is handled by calling the **go test** command which will, based on the above conventions, execute all of the tests in the package. Later you should be able to path to the **riskEngine** folder, execute:
@@ -271,32 +272,31 @@ $go test -v
 
 And see something like the following for output:
 
-    === RUN TestCustomSingleBattleResolver
-    --- PASS: TestCustomSingleBattleResolver (0.00 seconds)
-    === RUN TestCustomDiceRoller
-    --- PASS: TestCustomDiceRoller (0.00 seconds)
-    === RUN TestDefaultRollTheDiceLengthOfReturn
-    --- PASS: TestDefaultRollTheDiceLengthOfReturn (0.00 seconds)
-    === RUN TestDefaultRollTheDiceSortsResultOrder
-    --- PASS: TestDefaultRollTheDiceSortsResultOrder (0.00 seconds)
-    === RUN TestSingleCalculatedBattleResult
-    --- PASS: TestSingleCalculatedBattleResult (0.00 seconds)
-    === RUN TestPercentageOfWinsFor100
-    --- PASS: TestPercentageOfWinsFor100 (0.00 seconds)
-    === RUN TestMultipleCalculatedBattleResult
-    --- PASS: TestMultipleCalculatedBattleResult (0.00 seconds)
-    === RUN TestMultipleCalculatedBattleResultWithVaryingAttackers
-    --- PASS: TestMultipleCalculatedBattleResultWithVaryingAttackers (0.00 seconds)
-    === RUN TestMultipleCalculatedBattleResultWithSomeLosers
-    --- PASS: TestMultipleCalculatedBattleResultWithSomeLosers (0.00 seconds)
-    === RUN TestRunSeriesOfBattlesAndVerifyResults
-    --- PASS: TestRunSeriesOfBattlesAndVerifyResults (0.00 seconds)
-    === RUN TestFullIntegration
-    2013/05/13 10:30:41 &riskEngine.BattleResult{AverageNumberOfAttackersLeft:10, PercentageThatWereWins:91.799995}
-    --- PASS: TestFullIntegration (0.01 seconds)
-    PASS
-    ok      github.com/JKallhoff/risk-analyzer-web/riskEngine   0.036s
-    
+	=== RUN TestCustomSingleBattleResolver
+	--- PASS: TestCustomSingleBattleResolver (0.00 seconds)
+	=== RUN TestCustomDiceRoller
+	--- PASS: TestCustomDiceRoller (0.00 seconds)
+	=== RUN TestDefaultRollTheDiceLengthOfReturn
+	--- PASS: TestDefaultRollTheDiceLengthOfReturn (0.00 seconds)
+	=== RUN TestDefaultRollTheDiceSortsResultOrder
+	--- PASS: TestDefaultRollTheDiceSortsResultOrder (0.00 seconds)
+	=== RUN TestSingleCalculatedBattleResult
+	--- PASS: TestSingleCalculatedBattleResult (0.00 seconds)
+	=== RUN TestPercentageOfWinsFor100
+	--- PASS: TestPercentageOfWinsFor100 (0.00 seconds)
+	=== RUN TestMultipleCalculatedBattleResult
+	--- PASS: TestMultipleCalculatedBattleResult (0.00 seconds)
+	=== RUN TestMultipleCalculatedBattleResultWithVaryingAttackers
+	--- PASS: TestMultipleCalculatedBattleResultWithVaryingAttackers (0.00 seconds)
+	=== RUN TestMultipleCalculatedBattleResultWithSomeLosers
+	--- PASS: TestMultipleCalculatedBattleResultWithSomeLosers (0.00 seconds)
+	=== RUN TestRunSeriesOfBattlesAndVerifyResults
+	--- PASS: TestRunSeriesOfBattlesAndVerifyResults (0.00 seconds)
+	=== RUN TestFullIntegration
+	2013/05/13 10:30:41 &riskEngine.BattleResult{AverageNumberOfAttackersLeft:10, PercentageThatWereWins:91.799995}
+	--- PASS: TestFullIntegration (0.01 seconds)
+	PASS
+	ok      github.com/JKallhoff/risk-analyzer-web/riskEngine   0.036s
 
 ## Learning to Test in Go
 
@@ -320,21 +320,21 @@ I'm not going to walk through all of the unit tests I added to the engine; you c
 ## Verifying Our Mocking Works
 
 {{< highlight go >}}
-func TestCustomSingleBattleResolver(t *testing.T) {
-    //Arrange
-    var mockResolver = func(*BattleRequest) (result *singleBattleResult) {
-        result = new(singleBattleResult)
-        result.AttackingArmiesLeft = 20 //arbitrary amount
-        return
-    }
-
-    //Act
-    request := BattleRequest{singleBattleResolver: mockResolver}
-
-    //Assert
-    if result := request.singleBattleResolver(&request); result.AttackingArmiesLeft != 20 {
-        t.Error("We were unable to override the single battle resolver")
-    }
+func TestCustomSingleBattleResolver(t \*testing.T) {
+	//Arrange
+	var mockResolver = func(*BattleRequest) (result *singleBattleResult) {
+	    result = new(singleBattleResult)
+	    result.AttackingArmiesLeft = 20 //arbitrary amount
+	    return
+	}
+	
+	//Act
+	request := BattleRequest{singleBattleResolver: mockResolver}
+	
+	//Assert
+	if result := request.singleBattleResolver(&request); result.AttackingArmiesLeft != 20 {
+	    t.Error("We were unable to override the single battle resolver")
+	}
 }
 {{< /highlight >}}
 
@@ -345,20 +345,20 @@ Next we declare a new **BattleRequest** object setting our **singleBattleResolve
 ## Verifying Our Dice Results Are Sorted
 
 {{< highlight go >}}
-func TestDefaultRollTheDiceSortsResultOrder(t *testing.T) {
-    //Arrange,Act,Assert
-    for i := 0; i < 20; i++ {
-        results := rollTheDice(10)
-
-        previous := results[0]
-        for _, digit := range results {
-            if digit > previous {
-                t.Errorf("%v Values are unsorted", results)
-                break
-            }
-            previous = digit
-        }
-    }
+func TestDefaultRollTheDiceSortsResultOrder(t \*testing.T) {
+	//Arrange,Act,Assert
+	for i := 0; i < 20; i++ {
+	    results := rollTheDice(10)
+	
+	    previous := results[0]
+	    for _, digit := range results {
+	        if digit > previous {
+	            t.Errorf("%v Values are unsorted", results)
+	            break
+	        }
+	        previous = digit
+	    }
+	}
 }
 {{< /highlight >}}
 
@@ -367,17 +367,17 @@ Here I wanted to write a test to verify that the **rollTheDice** method sorts it
 ## Verifying We're Calculating the Correct Battle Results
 
 {{< highlight go >}}
-func TestMultipleCalculatedBattleResultWithVaryingAttackers(t *testing.T) {
-    //Arrange
-    request := new(BattleRequest)
-    singleBattleResults := []*singleBattleResult{
-        &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
-        &singleBattleResult{AttackingArmiesLeft: 12, AttackerWon: true}}
-
-    //Assert,Act
-    if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 8 {
-        t.Errorf("Excepted average of 8, instead got %v", battleResult.AverageNumberOfAttackersLeft)
-    }
+func TestMultipleCalculatedBattleResultWithVaryingAttackers(t \*testing.T) {
+	//Arrange
+	request := new(BattleRequest)
+	singleBattleResults := []*singleBattleResult{
+	    &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
+	    &singleBattleResult{AttackingArmiesLeft: 12, AttackerWon: true}}
+	
+	//Assert,Act
+	if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 8 {
+	    t.Errorf("Excepted average of 8, instead got %v", battleResult.AverageNumberOfAttackersLeft)
+	}
 }
 {{< /highlight >}}
 
@@ -395,137 +395,137 @@ The Go language and tools come with a convention based testing framework built i
 package riskEngine
 
 import (
-    "math/rand"
-    "sort"
-    "time"
+	"math/rand"
+	"sort"
+	"time"
 )
 
 type BattleCalculator interface {
-    CalculateBattleResults() *BattleResult
+	CalculateBattleResults() *BattleResult
 }
 
 type BattleRequest struct {
-    AttackingArmies, DefendingArmies int
-    NumberOfBattles                  int
-    singleBattleResolver             func(*BattleRequest) *singleBattleResult
-    diceRoller                       func(numberOfDiceToRoll int) []int
+	AttackingArmies, DefendingArmies int
+	NumberOfBattles                  int
+	singleBattleResolver             func(*BattleRequest) *singleBattleResult
+	diceRoller                       func(numberOfDiceToRoll int) []int
 }
 
 type BattleResult struct {
-    AverageNumberOfAttackersLeft int
-    PercentageThatWereWins       float32
+	AverageNumberOfAttackersLeft int
+	PercentageThatWereWins       float32
 }
 
 type singleBattleResult struct {
-    AttackingArmiesLeft int
-    AttackerWon         bool
+	AttackingArmiesLeft int
+	AttackerWon         bool
 }
 
 type diceResultSorter struct {
-    sort.Interface
+	sort.Interface
 }
 
 func (sorter diceResultSorter) Less(i, j int) bool {
-    return sorter.Interface.Less(j, i)
+	return sorter.Interface.Less(j, i)
 }
 
-func (request *BattleRequest) CalculateBattleResults() (result *BattleResult) {
+func (request *BattleRequest) CalculateBattleResults() (result *BattleResult) {
 
-    rand.Seed(time.Now().UnixNano())
-    battles := make([]*singleBattleResult, request.NumberOfBattles, request.NumberOfBattles)
-
-    if request.singleBattleResolver == nil {
-        request.singleBattleResolver = determineSingleBattle
-    }
-
-    if request.diceRoller == nil {
-        request.diceRoller = rollTheDice
-    }
-
-    for index, _ := range battles {
-        battles[index] = request.singleBattleResolver(request)
-    }
-
-    result = request.calculateBattleResult(battles)
-    return
+	rand.Seed(time.Now().UnixNano())
+	battles := make([]*singleBattleResult, request.NumberOfBattles, request.NumberOfBattles)
+	
+	if request.singleBattleResolver == nil {
+	    request.singleBattleResolver = determineSingleBattle
+	}
+	
+	if request.diceRoller == nil {
+	    request.diceRoller = rollTheDice
+	}
+	
+	for index, _ := range battles {
+	    battles[index] = request.singleBattleResolver(request)
+	}
+	
+	result = request.calculateBattleResult(battles)
+	return
 }
 
-func (request *BattleRequest) calculateBattleResult(battles []*singleBattleResult) (result *BattleResult) {
-    result = new(BattleResult)
-    sum := 0
-    numberOfBattles := 0
-    numberOfWins := 0
-
-    for _, battleResult := range battles {
-        sum = sum + battleResult.AttackingArmiesLeft
-        numberOfBattles++
-        if battleResult.AttackerWon {
-            numberOfWins++
-        }
-    }
-
-    result.AverageNumberOfAttackersLeft = int(sum / numberOfBattles)
-    result.PercentageThatWereWins = (float32(numberOfWins) / float32(numberOfBattles)) * 100
-    return
+func (request *BattleRequest) calculateBattleResult(battles []*singleBattleResult) (result \*BattleResult) {
+	result = new(BattleResult)
+	sum := 0
+	numberOfBattles := 0
+	numberOfWins := 0
+	
+	for _, battleResult := range battles {
+	    sum = sum + battleResult.AttackingArmiesLeft
+	    numberOfBattles++
+	    if battleResult.AttackerWon {
+	        numberOfWins++
+	    }
+	}
+	
+	result.AverageNumberOfAttackersLeft = int(sum / numberOfBattles)
+	result.PercentageThatWereWins = (float32(numberOfWins) / float32(numberOfBattles)) * 100
+	return
 }
 
-func determineSingleBattle(request *BattleRequest) (result *singleBattleResult) {
-    var (
-        remainingAttackers = request.AttackingArmies
-        remainingDefenders = request.DefendingArmies
-        numberOfDice       int
-    )
-
-    for remainingAttackers > 1 && remainingDefenders > 0 {
-        if remainingAttackers > 4 {
-            numberOfDice = 3
-        } else {
-            numberOfDice = remainingAttackers - 1
-        }
-
-        attackingDice := request.diceRoller(numberOfDice)
-
-        if remainingDefenders >= 2 {
-            numberOfDice = 2
-        } else {
-            numberOfDice = 1
-        }
-
-        defendingDice := request.diceRoller(numberOfDice)
-
-        if attackingDice[0] > defendingDice[0] {
-            remainingDefenders--
-        } else {
-            remainingAttackers--
-        }
-
-        if len(attackingDice) > 1 && len(defendingDice) > 1 {
-            if attackingDice[1] > defendingDice[1] {
-                remainingDefenders--
-            } else {
-                remainingAttackers--
-            }
-        }
-    }
-
-    result = new(singleBattleResult)
-    result.AttackingArmiesLeft = remainingAttackers
-
-    if remainingDefenders > 0 {
-        result.AttackerWon = false
-    } else {
-        result.AttackerWon = true
-    }
-    return
+func determineSingleBattle(request *BattleRequest) (result *singleBattleResult) {
+	var (
+	    remainingAttackers = request.AttackingArmies
+	    remainingDefenders = request.DefendingArmies
+	    numberOfDice       int
+	)
+	
+	for remainingAttackers > 1 && remainingDefenders > 0 {
+	    if remainingAttackers > 4 {
+	        numberOfDice = 3
+	    } else {
+	        numberOfDice = remainingAttackers - 1
+	    }
+	
+	    attackingDice := request.diceRoller(numberOfDice)
+	
+	    if remainingDefenders >= 2 {
+	        numberOfDice = 2
+	    } else {
+	        numberOfDice = 1
+	    }
+	
+	    defendingDice := request.diceRoller(numberOfDice)
+	
+	    if attackingDice[0] > defendingDice[0] {
+	        remainingDefenders--
+	    } else {
+	        remainingAttackers--
+	    }
+	
+	    if len(attackingDice) > 1 && len(defendingDice) > 1 {
+	        if attackingDice[1] > defendingDice[1] {
+	            remainingDefenders--
+	        } else {
+	            remainingAttackers--
+	        }
+	    }
+	}
+	
+	result = new(singleBattleResult)
+	result.AttackingArmiesLeft = remainingAttackers
+	
+	if remainingDefenders > 0 {
+	    result.AttackerWon = false
+	} else {
+	    result.AttackerWon = true
+	}
+	return
 }
 
 func rollTheDice(numberOfDiceToRoll int) (results []int) {
-    results = make([]int, numberOfDiceToRoll)
-    for index, _ := range results {
-        results[index] = rand.Intn(6) + 1
-    }
-    sort.Sort(diceResultSorter{sort.IntSlice(results)})
-    return
+	results = make([]int, numberOfDiceToRoll)
+	for index, _ := range results {
+	    results[index] = rand.Intn(6) + 1
+	}
+	sort.Sort(diceResultSorter{sort.IntSlice(results)})
+	return
 }
 {{< /highlight >}}
 
@@ -535,179 +535,179 @@ func rollTheDice(numberOfDiceToRoll int) (results []int) {
 package riskEngine
 
 import (
-    "log"
-    "testing"
+	"log"
+	"testing"
 )
 
-func TestCustomSingleBattleResolver(t *testing.T) {
-    //Arrange
-    var mockResolver = func(*BattleRequest) (result *singleBattleResult) {
-        result = new(singleBattleResult)
-        result.AttackingArmiesLeft = 20 //arbitrary amount
-        return
-    }
-
-    //Act
-    request := BattleRequest{singleBattleResolver: mockResolver}
-
-    //Assert
-    if result := request.singleBattleResolver(&request); result.AttackingArmiesLeft != 20 {
-        t.Error("We were unable to override the single battle resolver")
-    }
+func TestCustomSingleBattleResolver(t \*testing.T) {
+	//Arrange
+	var mockResolver = func(*BattleRequest) (result *singleBattleResult) {
+	    result = new(singleBattleResult)
+	    result.AttackingArmiesLeft = 20 //arbitrary amount
+	    return
+	}
+	
+	//Act
+	request := BattleRequest{singleBattleResolver: mockResolver}
+	
+	//Assert
+	if result := request.singleBattleResolver(&request); result.AttackingArmiesLeft != 20 {
+	    t.Error("We were unable to override the single battle resolver")
+	}
 }
 
-func TestCustomDiceRoller(t *testing.T) {
-    //Arrange
-    var mockRoller = func(numberOfDiceToRoll int) (results []int) {
-        results = make([]int, 1)
-        results[0] = 100
-        return
-    }
-
-    //Act
-    request := BattleRequest{diceRoller: mockRoller}
-
-    //Assert
-    if result := request.diceRoller(1); result[0] != 100 {
-        t.Error("We were unable to override the dice roller")
-    }
+func TestCustomDiceRoller(t \*testing.T) {
+	//Arrange
+	var mockRoller = func(numberOfDiceToRoll int) (results []int) {
+	    results = make([]int, 1)
+	    results[0] = 100
+	    return
+	}
+	
+	//Act
+	request := BattleRequest{diceRoller: mockRoller}
+	
+	//Assert
+	if result := request.diceRoller(1); result[0] != 100 {
+	    t.Error("We were unable to override the dice roller")
+	}
 }
 
-func TestDefaultRollTheDiceLengthOfReturn(t *testing.T) {
-    //Arrange,Act,Assert
-    results := rollTheDice(3)
-    if length := len(results); length != 3 {
-        t.Errorf("The number of dice rolled should have been 3 but instead was: %v", length)
-    }
+func TestDefaultRollTheDiceLengthOfReturn(t \*testing.T) {
+	//Arrange,Act,Assert
+	results := rollTheDice(3)
+	if length := len(results); length != 3 {
+	    t.Errorf("The number of dice rolled should have been 3 but instead was: %v", length)
+	}
 }
 
-func TestDefaultRollTheDiceSortsResultOrder(t *testing.T) {
-    //Arrange,Act,Assert
-    for i := 0; i < 20; i++ {
-        results := rollTheDice(10)
-
-        previous := results[0]
-        for _, digit := range results {
-            if digit > previous {
-                t.Errorf("%v Values are unsorted", results)
-                break
-            }
-            previous = digit
-        }
-    }
+func TestDefaultRollTheDiceSortsResultOrder(t \*testing.T) {
+	//Arrange,Act,Assert
+	for i := 0; i < 20; i++ {
+	    results := rollTheDice(10)
+	
+	    previous := results[0]
+	    for _, digit := range results {
+	        if digit > previous {
+	            t.Errorf("%v Values are unsorted", results)
+	            break
+	        }
+	        previous = digit
+	    }
+	}
 }
 
-func TestSingleCalculatedBattleResult(t *testing.T) {
-    //Arrange
-    request := new(BattleRequest)
-    singleBattleResults := []*singleBattleResult{&singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true}}
-
-    //Assert,Act
-    if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 5 {
-        t.Errorf("Excepted average of 5, instead got %v", battleResult.AverageNumberOfAttackersLeft)
-    }
-
-}
-
-func TestPercentageOfWinsFor100(t *testing.T) {
-    //Arrange
-    request := new(BattleRequest)
-    singleBattleResults := []*singleBattleResult{&singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true}}
-
-    //Assert,Act
-    if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.PercentageThatWereWins != 100.0 {
-        t.Errorf("Excepted percentage of wins of 100.0, instead got %v", battleResult.PercentageThatWereWins)
-    }
-}
-
-func TestMultipleCalculatedBattleResult(t *testing.T) {
-    //Arrange
-    request := new(BattleRequest)
-    singleBattleResults := []*singleBattleResult{
-        &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
-        &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true}}
-
-    //Assert,Act
-    if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 5 {
-        t.Errorf("Excepted average of 5, instead got %v", battleResult.AverageNumberOfAttackersLeft)
-    }
+func TestSingleCalculatedBattleResult(t \*testing.T) {
+	//Arrange
+	request := new(BattleRequest)
+	singleBattleResults := []*singleBattleResult{&singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true}}
+	
+	//Assert,Act
+	if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 5 {
+	    t.Errorf("Excepted average of 5, instead got %v", battleResult.AverageNumberOfAttackersLeft)
+	}
 
 }
 
-func TestMultipleCalculatedBattleResultWithVaryingAttackers(t *testing.T) {
-    //Arrange
-    request := new(BattleRequest)
-    singleBattleResults := []*singleBattleResult{
-        &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
-        &singleBattleResult{AttackingArmiesLeft: 12, AttackerWon: true}}
-
-    //Assert,Act
-    if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 8 {
-        t.Errorf("Excepted average of 8, instead got %v", battleResult.AverageNumberOfAttackersLeft)
-    }
+func TestPercentageOfWinsFor100(t \*testing.T) {
+	//Arrange
+	request := new(BattleRequest)
+	singleBattleResults := []*singleBattleResult{&singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true}}
+	
+	//Assert,Act
+	if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.PercentageThatWereWins != 100.0 {
+	    t.Errorf("Excepted percentage of wins of 100.0, instead got %v", battleResult.PercentageThatWereWins)
+	}
 }
 
-func TestMultipleCalculatedBattleResultWithSomeLosers(t *testing.T) {
-    //Arrange
-    request := new(BattleRequest)
-    singleBattleResults := []*singleBattleResult{
-        &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
-        &singleBattleResult{AttackingArmiesLeft: 1, AttackerWon: false}}
+func TestMultipleCalculatedBattleResult(t \*testing.T) {
+	//Arrange
+	request := new(BattleRequest)
+	singleBattleResults := []*singleBattleResult{
+	    &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
+	    &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true}}
+	
+	//Assert,Act
+	if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 5 {
+	    t.Errorf("Excepted average of 5, instead got %v", battleResult.AverageNumberOfAttackersLeft)
+	}
 
-    //Assert,Act
-    if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.PercentageThatWereWins != 50.0 {
-        t.Errorf("Excepted average of 50.0, instead got %v", battleResult.PercentageThatWereWins)
-    }
 }
 
-//test determineSingleBattle(*BattleRequest)
-func TestRunSeriesOfBattlesAndVerifyResults(t *testing.T) {
-    //Arrange
-    request := FetchBattleRequest(4, 2, 1)
+func TestMultipleCalculatedBattleResultWithVaryingAttackers(t \*testing.T) {
+	//Arrange
+	request := new(BattleRequest)
+	singleBattleResults := []*singleBattleResult{
+	    &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
+	    &singleBattleResult{AttackingArmiesLeft: 12, AttackerWon: true}}
+	
+	//Assert,Act
+	if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.AverageNumberOfAttackersLeft != 8 {
+	    t.Errorf("Excepted average of 8, instead got %v", battleResult.AverageNumberOfAttackersLeft)
+	}
+}
 
-    //Act,Assert
-    RunSingleBattleTest(t, request, 6, 5, 4) //Attacker should win due to 6's beating 5's
-    RunSingleBattleTest(t, request, 5, 5, 1) //Defender should win due to 5's tying 5's
-    RunSingleBattleTest(t, request, 5, 6, 1) //Defender should win due to 6's beating 5's
+func TestMultipleCalculatedBattleResultWithSomeLosers(t \*testing.T) {
+	//Arrange
+	request := new(BattleRequest)
+	singleBattleResults := []*singleBattleResult{
+	    &singleBattleResult{AttackingArmiesLeft: 5, AttackerWon: true},
+	    &singleBattleResult{AttackingArmiesLeft: 1, AttackerWon: false}}
+	
+	//Assert,Act
+	if battleResult := request.calculateBattleResult(singleBattleResults); battleResult.PercentageThatWereWins != 50.0 {
+	    t.Errorf("Excepted average of 50.0, instead got %v", battleResult.PercentageThatWereWins)
+	}
+}
+
+//test determineSingleBattle(\*BattleRequest)
+func TestRunSeriesOfBattlesAndVerifyResults(t \*testing.T) {
+	//Arrange
+	request := FetchBattleRequest(4, 2, 1)
+	
+	//Act,Assert
+	RunSingleBattleTest(t, request, 6, 5, 4) //Attacker should win due to 6's beating 5's
+	RunSingleBattleTest(t, request, 5, 5, 1) //Defender should win due to 5's tying 5's
+	RunSingleBattleTest(t, request, 5, 6, 1) //Defender should win due to 6's beating 5's
 }
 
 //Helpers
-func RunSingleBattleTest(t *testing.T, request *BattleRequest, attackerDice, defenderDice, expectedNumberOfAttackersLeft int) {
-    state := 1
-    var mockRoller = func(numberOfDiceToRoll int) (results []int) {
-        results = make([]int, numberOfDiceToRoll)
-        if state == 1 {
-            for i := range results {
-                results[i] = attackerDice
-            }
-            state = 2
-        } else {
-            for i := range results {
-                results[i] = defenderDice
-            }
-            state = 1
-        }
-        return
-    }
-    request.diceRoller = mockRoller
-    if singleResult := determineSingleBattle(request); singleResult.AttackingArmiesLeft != expectedNumberOfAttackersLeft {
-        t.Errorf("Expected %v attackers left but instead found %v", expectedNumberOfAttackersLeft, singleResult.AttackingArmiesLeft)
-    }
+func RunSingleBattleTest(t *testing.T, request *BattleRequest, attackerDice, defenderDice, expectedNumberOfAttackersLeft int) {
+	state := 1
+	var mockRoller = func(numberOfDiceToRoll int) (results []int) {
+	    results = make([]int, numberOfDiceToRoll)
+	    if state == 1 {
+	        for i := range results {
+	            results[i] = attackerDice
+	        }
+	        state = 2
+	    } else {
+	        for i := range results {
+	            results[i] = defenderDice
+	        }
+	        state = 1
+	    }
+	    return
+	}
+	request.diceRoller = mockRoller
+	if singleResult := determineSingleBattle(request); singleResult.AttackingArmiesLeft != expectedNumberOfAttackersLeft {
+	    t.Errorf("Expected %v attackers left but instead found %v", expectedNumberOfAttackersLeft, singleResult.AttackingArmiesLeft)
+	}
 }
 
-func FetchBattleRequest(attackingArmies, defendingArmies, numberOfBattles int) (request *BattleRequest) {
-    request = new(BattleRequest)
-    request.AttackingArmies = attackingArmies
-    request.DefendingArmies = defendingArmies
-    request.NumberOfBattles = numberOfBattles
-    return
+func FetchBattleRequest(attackingArmies, defendingArmies, numberOfBattles int) (request \*BattleRequest) {
+	request = new(BattleRequest)
+	request.AttackingArmies = attackingArmies
+	request.DefendingArmies = defendingArmies
+	request.NumberOfBattles = numberOfBattles
+	return
 }
 {{< /highlight >}}
 
 I've tagged the code in the repo for this post here: [v2.0][5]. Next post we'll tie our engine to our web application and add MongoDB persistence!
 
- [1]: 2013/05/02/go-web-apps-risk-analyzer---setup/
- [2]: #Synopsis
- [3]: http://golang.org/pkg/math/rand/
- [4]: http://golang.org/pkg/sort/
- [5]: https://github.com/JKallhoff/risk-analyzer-web/tree/v2.0
+[1]:	2013/05/02/go-web-apps-risk-analyzer---setup/
+[2]:	#Synopsis
+[3]:	http://golang.org/pkg/math/rand/
+[4]:	http://golang.org/pkg/sort/
+[5]:	https://github.com/JKallhoff/risk-analyzer-web/tree/v2.0

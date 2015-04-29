@@ -8,7 +8,7 @@ title = "Go Web Apps: Risk Analyzer - Tying It All Together"
 
 +++
 
-> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It smelly, most likely not relevant, and I was still very much learning the language.
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It's smelly, most likely not relevant, and I was still very much learning the language.
 
 
 If you haven't read the previous Risk Analyzer posts I highly suggest you do so first<!--more-->:

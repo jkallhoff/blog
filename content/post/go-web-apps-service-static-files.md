@@ -9,7 +9,7 @@ aliases = ["/2013/04/14/serving-static-content-from-go/"]
 
 +++
 
-> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It smelly, most likely not relevant, and I was still very much learning the language.
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It's smelly, most likely not relevant, and I was still very much learning the language.
 
 One feature of Go web applications I struggled with early on was how to serve my static (css, js, images, etc...) content. Here's the setup that ended up working for me!<!--more-->
 

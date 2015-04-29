@@ -8,7 +8,7 @@ title = "Go Web Apps: Risk Analyzer - Setup"
 
 +++
 
-> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It was written when the Go source wasn't yet housed at Github and I was still very much learning the language.
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It smelly, most likely not relevant, and I was still very much learning the language.
 
 Kicking off today is a short series on building a fully working web application in Go. <!--more-->Based on my previous research into the subject:
 

@@ -155,12 +155,15 @@ dfn, cite, em, i {
 }
 blockquote {
 	margin: 0 1.5em;
+	padding: .5em 1em 0 1em;
 	color: #333;
 	font-style: italic;
 	letter-spacing: .025em;
 	line-height: 1.75em;
 	color: #666;
 	text-align: justify;
+	background-color: #f6f6f6;
+	border-radius: 15px;
 }
 cite {
 	font-size: .8em;

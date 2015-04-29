@@ -8,7 +8,8 @@ title = "Setting Up Mongodb on Webfaction with Go"
 
 +++
 
-> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It was written when the Go source wasn't yet housed at Github and I was still very much learning the language.
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It smelly, most likely not relevant, and I was still very much learning the language.
+
 
 In this post we'll be walking step by step through how to set up your own MongoDB instance<!--more--> in your [Webfaction][1] account. In addition I'll show you a trick I use to work with the instance locally to ease my Go development. Finally we'll use the excellent [mgo][2] MongoDB Go driver to create a super simple Go app that'll read and write data to our new MongoDB instance.
 

@@ -8,6 +8,12 @@ title = "Moving to DigitalOcean"
 
 +++
 
+{{< highlight go >}}
+
+{{< highlight go >}}
+
 Recently I decided to make the switch from a Wordpress based blog hosted at [Web Faction][1] to something else.
+
+
 
 [1]:	http://www.webfaction.com

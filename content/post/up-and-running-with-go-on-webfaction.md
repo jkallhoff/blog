@@ -1,14 +1,14 @@
 +++
 date = "2013-04-04"
 metadescription = "A step by step guide to setting up a hosted Go web application on Webfaction."
-metatitle = "jkallhoff.com | Up and Running With Go on Webfaction"
+metatitle = "jessekallhoff.com | Up and Running With Go on Webfaction"
 series = ["archive"]
 tags = ["go", "webfaction"]
 title = "Up and Running With Go on Webfaction"
 
 +++
 
-> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It old, most likely not relevant, and I was still very much learning the language.
+> **Disclaimer:** this is old content that's horribly out of date and possibly **very** incorrect. I've archived it here for historic purposes only. It smelly, most likely not relevant, and I was still very much learning the language.
 
 
 Over the past handful of weeks I've set aside other development research and started pouring over all of the GO documentation I could get my hands on. After numerous hello world style applications I've decided today is the day to take Go to the next level: **hosted web applications**!

@@ -1,7 +1,7 @@
 +++
 date = "2015-04-28"
 metadescription = "Quick intro on why I moved from Webfaction to Digital Ocean"
-metatitle = "jkallhoff.com | Moving to DigitalOcean - Quick intro on why I moved from Webfaction to Digital Ocean."
+metatitle = "jessekallhoff.com | Moving to DigitalOcean - Quick intro on why I moved from Webfaction to Digital Ocean."
 series = []
 tags = ["go","linux","digitalocean","web faction"]
 title = "Moving to DigitalOcean"

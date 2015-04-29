@@ -1,7 +1,7 @@
 +++
 date = "2014-07-09"
 metadescription = "How to quickly set up remote debugging for Microsoft Azure Websites (PaaS) in Visual Studio 2013."
-metatitle = "jkallhoff.com | Remote Debugging with Windows Azure"
+metatitle = "jessekallhoff.com | Remote Debugging with Windows Azure"
 series = []
 tags = ["azure"]
 title = "Remote Debugging with Windows Azure"

@@ -1,7 +1,7 @@
 +++
 date = "2013-05-13"
 metadescription = "Writing a go web app to analyze the odds of winning as an attacker in the Risk board game. Covers writing unit tests in go(golang) to verify code accuracy."
-metatitle = "jkallhoff.com | go web apps risk analyzer engine and tests"
+metatitle = "jessekallhoff.com | go web apps risk analyzer engine and tests"
 series = ["archive","risk analyzer"]
 tags = ["go"]
 title = "Go Web Apps: Risk Analyzer - Engine and Tests"

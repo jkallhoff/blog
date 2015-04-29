@@ -1,7 +1,7 @@
 +++
 date = "2013-05-02"
 metadescription = "Go Web Apps: The first post in a series on building a go (golang) web application from scratch."
-metatitle = "jkallhoff.com | go web apps risk analyzer setup"
+metatitle = "jessekallhoff.com | go web apps risk analyzer setup"
 series = ["archive","risk analyzer"]
 tags = ["go"]
 title = "Go Web Apps: Risk Analyzer - Setup"

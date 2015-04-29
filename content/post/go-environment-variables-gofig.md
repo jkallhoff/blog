@@ -1,7 +1,7 @@
 +++
 date = "2013-04-22"
 metadescription = "How to utilize the GoFig Go package to load a configuration object at runtime for environment specific configuration variables."
-metatitle = "jkallhoff.com | go environment variables gofig"
+metatitle = "jessekallhoff.com | go environment variables gofig"
 series = ["archive"]
 tags = ["go"]
 title = "Go Environment Variables: GoFig"

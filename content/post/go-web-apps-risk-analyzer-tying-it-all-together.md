@@ -1,7 +1,7 @@
 +++
 date = "2013-05-29"
 metadescription = "In the final post of the Risk Analyzer series we tie up our go web applications loose ends using golang, MongoDB, and AJAX. Tying it all together."
-metatitle = "jkallhoff.com | go web apps risk analyzer tying it all together"
+metatitle = "jessekallhoff.com | go web apps risk analyzer tying it all together"
 series = ["archive","risk analyzer"]
 tags = ["go"]
 title = "Go Web Apps: Risk Analyzer - Tying It All Together"

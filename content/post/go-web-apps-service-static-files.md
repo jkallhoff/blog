@@ -1,10 +1,11 @@
 +++
 date = "2013-04-14"
 metadescription = "One approach to serving static content from Go (Golang) web applications."
-metatitle = "jkallhoff.com | go web apps serving static files"
+metatitle = "jessekallhoff.com | go web apps serving static files"
 series = ["archive"]
 tags = ["go"]
 title = "Go Web Apps Serving Static Files"
+aliases = ["/2013/04/14/serving-static-content-from-go/"]
 
 +++
 

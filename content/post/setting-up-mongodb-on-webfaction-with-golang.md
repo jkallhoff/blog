@@ -1,7 +1,7 @@
 +++
 date = "2013-04-10"
 metadescription = "Step by step guide to setting up MongoDB on Webfaction for use with your golang applications using the mgo driver."
-metatitle = "jkallhoff.com | setting up mongodb on webfaction with go"
+metatitle = "jessekallhoff.com | setting up mongodb on webfaction with go"
 series = ["archive"]
 tags = ["go","webfaction"]
 title = "Setting Up Mongodb on Webfaction with Go"

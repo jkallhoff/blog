@@ -1,5 +1,5 @@
 {
-	"baseurl": "http://localhost:1313/",
+	"baseurl": "http://jessekallhoff.com/",
 	"languageCode": "en-us",
 	"title": "Jesse Kallhoff's Development Blog",
 	"theme": "custom",
@@ -17,6 +17,6 @@
     	"series": "series"
 	},
 	"params": {
-		"Title": "jkallhoff.com"
+		"Title": "jessekallhoff.com"
 	}
 }

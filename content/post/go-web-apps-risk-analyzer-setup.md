@@ -5,6 +5,7 @@ metatitle = "jessekallhoff.com | go web apps risk analyzer setup"
 series = ["archive","risk analyzer"]
 tags = ["go"]
 title = "Go Web Apps: Risk Analyzer - Setup"
+aliases = ["/2013/05/02/go-web-apps-risk-analyzer-pt-1/"]
 
 +++
 

@@ -5,7 +5,7 @@ metatitle = "jessekallhoff.com | Things I Found Interesting - 3/20/2017"
 series = ["things I found interesting"]
 tags = ["go","linux","digitalocean","web faction"]
 title = "Things I Found Interesting - 3/20/2017"
-
+draft=false
 +++
 
 

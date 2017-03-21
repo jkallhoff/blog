@@ -3,7 +3,7 @@ date = "2017-03-20"
 metadescription = "Things I Found Interesting - 3/20/2017"
 metatitle = "jessekallhoff.com | Things I Found Interesting - 3/20/2017"
 series = ["things I found interesting"]
-tags = ["go","linux","digitalocean","web faction"]
+tags = ["go","dotnet"]
 title = "Things I Found Interesting - 3/20/2017"
 draft=false
 +++

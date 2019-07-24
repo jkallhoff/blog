@@ -2,7 +2,7 @@
 	"baseurl": "http://jessekallhoff.com/",
 	"languageCode": "en-us",
 	"title": "Jesse Kallhoff's Development Blog",
-	"theme": "custom",
+	"theme": "kraiklyn",
 	"Paginate": "5",
 	"pygmentsuseclasses": "false",
 	"pygmentsstyle": "manni",
@@ -17,6 +17,9 @@
     	"series": "series"
 	},
 	"params": {
-		"Title": "jessekallhoff.com"
+		"Title": "jessekallhoff.com",
+		"author": "Jesse Kallhoff",
+		"avatar": "https://avatars1.githubusercontent.com/u/158747?s=460&v=4",
+		"description":  ""
 	}
 }

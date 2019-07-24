@@ -11,7 +11,7 @@
 			<div class="nav-links">
 				{{ if eq true $paginator.HasNext }}
 				<div class="nav-previous">
-					<a href="{{ $paginator.Next.Url }}" >
+					<a href="{{ $paginator.Next.RelPermalink }}" >
 						<span class="meta-nav">&larr;</span> 
 						Older posts
 					</a>
@@ -19,7 +19,7 @@
 				{{ end }}
 				{{ if eq true $paginator.HasPrev }}
 				<div class="nav-next">
-					<a href="{{ $paginator.Prev.Url }}" >
+					<a href="{{ $paginator.Prev.RelPermalink }}" >
 						Newer posts 
 						<span class="meta-nav">&rarr;</span>
 					</a>
